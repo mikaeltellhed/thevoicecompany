@@ -1,0 +1,190 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="aws-cognito-sdk.min.js"></script>
+    <script src="amazon-cognito-identity.min.js"></script>
+    <script src="index.js"></script>
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- front pane -->
+    <div id="front-pane" style="width:100%; height:100%; position:absolute; top:0; right:0; ">
+        <div style="margin-left:50px; margin-top:170px; margin-right:50px;">
+            <h2>The Voice Company Inc</h2>
+            <p>Build great voice enabled apps with our awesome speech recognition and synthesis technology.</p>
+            <button class="getstarted-button login-signin-button" style="margin-top:10px;">GET STARTED</button>
+        </div>
+    </div>
+
+    <!-- sign up -->
+    <div id="signup-pane" style="width:100%; height:100%; position:absolute; top:0; right:0;display:none;">
+        <div style="margin-left:50px; margin-top:170px; margin-right:50px;">
+            <div style="color:#777777; font-size:10px; margin-top:0px; margin-right:0px; float:right;">
+                <span>Already have an account?</span>
+                <button class="goto-signin login-signin-button" style="margin-left:10px">SIGN IN</button>
+            </div>
+            <div style="color:#1f1f1f; font-size:20px;">
+                Sign up
+            </div>
+            <div style="color:#3f3f3f; font-size:12px;">
+                Enter your details below
+            </div>
+            <div style="color:#3f3f3f; font-size:10px; margin-top:20px;">
+                NAME
+            </div>
+            <input id="signup-name" class="login-input" style="width:100%; height:30px; margin-top:5px;"></input>
+
+            <div style="color:#3f3f3f; font-size:10px; margin-top:20px;">
+                EMAIL ADDRESS
+            </div>
+            <input id="signup-email" class="login-input" type="email" style="width:100%; height:30px; margin-top:5px;"></input>
+
+            <div style="color:#3f3f3f; font-size:10px; margin-top:20px;">
+                <span>PASSWORD</span>
+            </div>
+            <input id="signup-password" class="login-input" type="password" style="width:100%; height:30px; margin-top:5px;"></input>
+
+            <button class="signup-button login-signin-button" style="float:right; margin-top:10px;">SIGN UP</button>
+            <div style="height:50px;"></div>
+        </div>
+
+    </div>
+
+    <!-- confirm user -->
+    <div id="confirmuser-pane" style="width:100%; height:100%; position:absolute; top:0; right:0;display:none;">
+        <div style="margin-left:50px; margin-top:170px; margin-right:50px;">
+            <div style="color:#1f1f1f; font-size:20px;">
+                Confirm your email
+            </div>
+            <div style="color:#3f3f3f; font-size:12px;">
+                A verification code have been sent to your email.
+            </div>
+            <div style="color:#3f3f3f; font-size:10px; margin-top:20px;">
+                CODE
+            </div>
+            <input id="confirm-code" class="login-input" style="width:100%; height:30px; margin-top:5px;"></input>
+
+            <button class="confirm-button login-signin-button" style="float:right; margin-top:10px;">CONFIRM</button>
+            <div style="height:50px;"></div>
+        </div>
+    </div>
+
+    <!-- sign in page -->
+    <div id="signin-pane" style="width:100%; height:100%; position:absolute; top:0; right:0; display:none;">
+
+        <div style="margin-left:50px; margin-top:170px; margin-right:50px;">
+            <div style="color:#777777; font-size:10px; margin-top:0px; margin-right:0px; float:right;">
+                <span>Don't have an account?</span>
+                <button class="goto-signup login-signin-button" style="margin-left:10px">GET STARTED</button>
+            </div>
+            <div style="color:#1f1f1f; font-size:20px;">
+                Sign in to Noodl
+            </div>
+            <div style="color:#3f3f3f; font-size:12px;">
+                Enter your details below
+            </div>
+            <div style="color:#3f3f3f; font-size:10px; margin-top:20px;">
+                EMAIL ADDRESS
+            </div>
+            <input id="signin-email" class="login-input" type="email" style="width:100%; height:30px; margin-top:5px;"></input>
+
+            <div style="color:#3f3f3f; font-size:10px; margin-top:20px;">
+                <span>PASSWORD</span>
+                <span style="float:right;">
+                    <span class="forgot-password login-forgot-password">Forgot your password?</span>
+            </div>
+            <input id="signin-password" class="login-input" type="password" style="width:100%; height:30px; margin-top:5px;"></input>
+
+            <button class="signin-button login-signin-button" style="float:right; margin-top:10px;">SIGN IN</button>
+            <div style="height:50px;"></div>
+        </div>
+
+    </div>
+
+    <!-- forgot password pane -->
+    <div id="forgot-password-pane" style="width:100%; height:100%; position:absolute; top:0; right:0; display:none;">
+        <div style="margin-left:50px; margin-top:100px; margin-right:50px;">
+            <div style="color:#cccccc; font-size:20px;">
+                Forgot your password?
+            </div>
+            <div style="color:#999999; font-size:12px;">
+                Enter your email below, then you will receive a vertification code.
+            </div>
+            <div style="color:#777777; font-size:10px; margin-top:50px;">
+                EMAIL
+                <span id="forgot-password-email-warning" style="float:right; color:#885555; display:none;">Must be a valid email.</span>
+            </div>
+            <input id="forgot-password-email" class="forgot-password-validate-email login-input" type="email" style="width:100%; height:30px; margin-top:5px;"
+                data-change="onForgetPasswordInfoChanged"></input>
+            <button class="send-code login-signin-button" style="float:right; margin-top:10px;">SEND CODE</button>
+            <div style="height:50px;"></div>
+
+            <div style="color:#999999; font-size:12px; margin-top:50px;">
+                When you receive the code, you can set a new password below.
+            </div>
+            <div style="color:#777777; font-size:10px; margin-top:20px;">
+                NEW PASSWORD
+                <span id="forgot-password-password-warning" style="float:right; color:#885555; display:none;">Must have 8 chars, uppercase, lowercase and numbers.</span>
+            </div>
+            <input id="forgot-password-password" class="forgot-password-validate-info login-input" type="password" style="width:100%; height:30px; margin-top:5px;"></input>
+            <div style="color:#777777; font-size:10px; margin-top:20px;">
+                CONFIRM PASSWORD
+                <span id="forgot-password-confirm-warning" style="float:right; color:#885555; display:none;">Passwords don't match</span>
+            </div>
+            <input id="forgot-password-confirm" class="forgot-password-validate-info login-input" type="password" style="width:100%; height:30px; margin-top:5px;"></input>
+
+            <div style="color:#777777; font-size:10px; margin-top:20px;">
+                <span>VERIFICATION CODE</span>
+            </div>
+            <input id="forgot-password-code" class="login-input" type="password" style="width:100%; height:30px; margin-top:5px;"></input>
+            <button class="change-password login-signin-button" style="float:right; margin-top:10px;">CHANGE PASSWORD</button>
+            <div style="height:50px;"></div>
+        </div>
+
+    </div>
+
+    <!-- setup pane -->
+    <div id="setup-pane" style="width:100%; height:100%; position:absolute; top:0; right:0; display:none;">
+        <div style="margin-left:50px; margin-top:170px; margin-right:50px;">
+            <h2>Download and install Noodl</h2>
+            <p>Noodl is a codeless environment for learning and experimenting through creative labs.</p>
+            <button class="download-button login-signin-button" style="margin-top:5px; margin-bottom:20px;">DOWNLOAD</button>
+
+            <p>Once installed you can launch the The Voice Company Lab via the link below. You will be asked to open Noodl.</p>
+            <button class="launch-button login-signin-button" style="margin-top:5px; margin-bottom:20px;">LAUNCH LAB</button>
+        </div>
+    </div>
+
+    <!-- error -->
+    <div id="error-msg" style="position:absolute; top:20; right:100; left:100; height:70; background:#b88b8b; display:none; ">
+        <p style="margin:5px 5px 0px 5px;  color:rgb(114, 6, 6)">
+            <strong>Error</strong>
+        </p>
+        <p style="margin:0px 5px 5px 5px; color:rgb(82, 71, 71)">
+            <span id="error-text">Text</span>
+        </p>
+    </div>
+
+    <!-- toast -->
+    <div id="toast-msg" style="position:absolute; top:20; right:100; left:100; height:70; background:#8bb88f; display:none; ">
+        <p style="margin:5px 5px 0px 5px;  color:rgb(18, 71, 4)">
+            <strong>Error</strong>
+        </p>
+        <p style="margin:0px 5px 5px 5px; color:rgb(71, 82, 71)">
+            <span id="toast-text">Text</span>
+        </p>
+    </div>
+
+    <!-- activity -->
+    <div id="activity" style="position:absolute; width:100%; height:100%; display:none;">
+        <img src="loading.svg" style="position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);"></img>
+    </div>
+</body>
+
+</html>

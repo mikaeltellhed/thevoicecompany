@@ -1,0 +1,109 @@
+@font-face {
+    font-family: 'OpenSans-Light';
+    font-style: normal;
+    font-weight: 300;
+    src: url('OpenSans/OpenSans-Light.ttf');
+}
+    
+@font-face {
+    font-family: 'OpenSans-Regular';
+    font-style: normal;
+    font-weight: 300;
+    src: url('OpenSans/OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'OpenSans-Bold';
+    font-style: normal;
+    font-weight: 700;
+    src: url('OpenSans/OpenSans-Bold.ttf');
+}
+    
+html {
+    width:100%;
+    height:100%;
+}
+
+body {
+    font-family: 'OpenSans-Regular';
+    margin: 0px;
+    background-color: #ffffff;
+    font-size: 12px;
+    overflow:hidden;
+    cursor: default;
+}
+
+div {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;  
+  }
+  
+  *:focus {
+      outline: none;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+  
+  a {
+      color: #dda304;
+      text-decoration: none;
+  }
+  
+  a:hover {
+      color: #fdb314;
+  }
+  
+  .unselectable {
+    user-drag: none; 
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;  
+  }
+
+.login-input {
+    background-color: #222222;
+    color: #dddddd;
+    border: none;
+    display: block; 
+    padding:0 0 0 10px;
+    box-sizing: border-box;
+    font: 16px OpenSans-Regular;
+  }
+
+  .login-button {
+    border:none;
+    padding: 0px;  
+    background: url(icons/Red-signin_Medium_base_44dp.png);  
+    background-size: 120px 40px;
+    background-repeat: no-repeat;
+    background-position: center;  
+  }
+
+  .login-signin-button {
+    border:none;
+    padding: 0px;  
+    background-color: #4b7ec0;
+    color: #ffffff;
+    padding: 5px 20px 5px 20px;
+    font-size: 13px;
+  }
+  
+  .login-signin-button:hover {
+    background-color: #8897d6;
+  }
+
+  .login-forgot-password {
+    color: #9d7304;
+  }
+  
+  .login-forgot-password:hover {
+    color: #dda304;
+  }
